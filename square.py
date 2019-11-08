@@ -1,8 +1,5 @@
 from constants import *
 
-arrayOfSquareFractals = []
-
-
 class SquareFractal:
 
     def __init__(self, size, startPoint, iterable):
@@ -26,10 +23,14 @@ class SquareFractal:
                                                                                self.startPoint[1] + j * self.size / 3],
                                                                1))
 
+arrayOfSquareFractals = []
 
 arrayOfSquareFractals.append(SquareFractal(BASE_WIDTH, [0, 0], 1))
 
 for k in range(RECURSION_DEPTH):
     for p in range(len(arrayOfSquareFractals)):
-        arrayOfSquareFractals[p].replicate()
+        if arrayOfSquareFractals[p].iterable:
+            arrayOfSquareFractals[p].replicate()
+
+    for p in range(len(arrayOfSquareFractals)):
         arrayOfSquareFractals[p].draw()

@@ -5,9 +5,11 @@ def main():
 
     DISPLAY.fill(WHITE)
 
-    #import square
+    # import square
 
-    import snowflake
+    # import snowflake
+
+    import tree
 
     while True:
         for event in pygame.event.get():

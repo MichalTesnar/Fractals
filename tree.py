@@ -8,21 +8,22 @@ class TreeChunk:
         self.startPoint = startPoint
         self.iterable = iterable
         self.angle = angle
-        self.endPoint = [startPoint[0]+self.angle, startPoint[1]-lenght]
-        self.level= level
-        if self.level==1:
+        self.level = level
+        self.endPoint = [startPoint[0]+self.lenght*math.sin(self.angle), startPoint[1]-lenght*math.cos(self.angle)]
+        if self.level==0:
             self.endPoint = [startPoint[0], startPoint[1] - lenght]
 
     def draw(self):
         pygame.draw.line(DISPLAY, BLUE, self.startPoint, self.endPoint, int(self.width))
 
     def replicate(self):
-        arrayOfTreeChunks.append(TreeChunk(self.lenght/2, self.width*4/7, [self.endPoint[0], self.endPoint[1]], 1, self.angle, self.level+1))
-        arrayOfTreeChunks.append(TreeChunk(self.lenght / 2, self.width*4/7, [self.endPoint[0], self.endPoint[1]], 1, -self.angle, self.level+1))
+        self.iterable = 0
+        arrayOfTreeChunks.append(TreeChunk(self.lenght/2, self.width*5/7, [self.endPoint[0], self.endPoint[1]], 1, self.angle, self.level+1))
+        arrayOfTreeChunks.append(TreeChunk(self.lenght/2, self.width*5/7, [self.endPoint[0], self.endPoint[1]], 1, -self.angle, self.level+1))
 
 arrayOfTreeChunks = []
 
-arrayOfTreeChunks.append(TreeChunk(BASE_HEIGHT/2, BASE_WIDTH / 10, [BASE_WIDTH / 2, BASE_HEIGHT], 1, 50, 1))
+arrayOfTreeChunks.append(TreeChunk(BASE_HEIGHT/2, BASE_WIDTH / 20, [BASE_WIDTH / 2, BASE_HEIGHT], 1, math.pi/180*30, 0))
 
 arrayOfTreeChunks[0].replicate()
 

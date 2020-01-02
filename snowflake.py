@@ -69,74 +69,43 @@ class Snowflake:
         pygame.draw.line(DISPLAY, BLUE, [self.x1, self.y1], self.pointOfTriangle, self.size)
         pygame.draw.line(DISPLAY, BLUE, [self.x2, self.y2], self.pointOfTriangle, self.size)
 
+        '''
         self.pointOfTriangle = [BASE_WIDTH-self.pointOfTriangleX, self.pointOfTriangleY]
         pygame.draw.line(DISPLAY, BLUE, [BASE_WIDTH-self.startPoint[0], self.startPoint[1]],
                          [BASE_WIDTH-self.endPoint[0], self.endPoint[1]],self.size)
         pygame.draw.line(DISPLAY, WHITE, [BASE_WIDTH-self.x1, self.y1], [BASE_WIDTH-self.x2, self.y2], self.size + 3)
         pygame.draw.line(DISPLAY, BLUE, [BASE_WIDTH-self.x1, self.y1], self.pointOfTriangle, self.size)
         pygame.draw.line(DISPLAY, BLUE, [BASE_WIDTH-self.x2, self.y2], self.pointOfTriangle, self.size)
-
+        '''
     def replicate(self):
         self.iterable = 0
 
         arrayOfSnowflakes.append(Snowflake(self.size, self.startPoint, [self.x2, self.y2], 1,0))
         arrayOfSnowflakes.append(Snowflake(self.size, [self.x1, self.y1], self.endPoint, 1,0))
 
-        #arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY],[self.x2, self.y2], 1,0))
-
-
-        if self.x1==self.x2:
+        if self.y1>self.y2 and self.x1>self.x2:
             if self.x1 < self.pointOfTriangleX:
-                arrayOfSnowflakes.append(Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1,0))
-            elif self.x1 == self.pointOfTriangleX:
                 arrayOfSnowflakes.append(
                     Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
             else:
-                arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1,0))
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1, 0))
 
             if self.x2 < self.pointOfTriangleX:
-                arrayOfSnowflakes.append(Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1,0))
-            elif self.x2 == self.pointOfTriangleX:
                 arrayOfSnowflakes.append(
                     Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
             else:
-                arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x2, self.y2], 1,0))
-
-        elif self.x1>self.x2:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x2, self.y2], 1, 1))
+        elif self.y1<self.y2 and self.x1>self.x2:
             if self.x1 < self.pointOfTriangleX:
                 arrayOfSnowflakes.append(
                     Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 1))
-            elif self.x1 == self.pointOfTriangleX:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
             else:
                 arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1, 0))
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1, 1))
 
             if self.x2 < self.pointOfTriangleX:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
-            elif self.x2 == self.pointOfTriangleX:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
-            else:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x2, self.y2], 1, 0))
-        else:
-            if self.x1 < self.pointOfTriangleX:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
-            elif self.x1 == self.pointOfTriangleX:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
-            else:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1, 0))
-
-            if self.x2 < self.pointOfTriangleX:
-                arrayOfSnowflakes.append(
-                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
-            elif self.x2 == self.pointOfTriangleX:
                 arrayOfSnowflakes.append(
                     Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
             else:
@@ -145,7 +114,7 @@ class Snowflake:
 
 arrayOfSnowflakes = []
 
-arrayOfSnowflakes.append(Snowflake(3, [0, BASE_HEIGHT/2], [BASE_WIDTH, BASE_HEIGHT/2+400], 1, 0))
+arrayOfSnowflakes.append(Snowflake(3, [0, BASE_HEIGHT/2], [BASE_WIDTH, BASE_HEIGHT/2+1], 1, 0))
 
 for k in range(RECURSION_DEPTH):
     for p in range(len(arrayOfSnowflakes)):

@@ -30,7 +30,15 @@ class Snowflake:
             self.lowerPointY = self.endPoint[1]
             self.highPointY = self.startPoint[1]
 
-        if self.startPoint[1] < self.endPoint[1]:
+        if self.startPoint[1] <= self.endPoint[1] and self.isLeft==0:
+            self.x1 = self.lowerPointX + (self.highPointX - self.lowerPointX) / 3
+            self.y1 = self.lowerPointY + (self.highPointY - self.lowerPointY) / 3
+            self.x2 = self.lowerPointX + (self.highPointX - self.lowerPointX) * 2 / 3
+            self.y2 = self.lowerPointY + (self.highPointY - self.lowerPointY) * 2 / 3
+            self.pointOfTriangleX = (self.x1 + self.x2 - math.sqrt(3) * (self.y1 - self.y2)) / 2
+            self.pointOfTriangleY = (self.y1 + self.y2 + math.sqrt(3) * (self.x1 - self.x2)) / 2
+
+        elif self.startPoint[1] <= self.endPoint[1] and self.isLeft:
             self.x1 = self.lowerPointX + (self.highPointX - self.lowerPointX) / 3
             self.y1 = self.lowerPointY + (self.highPointY - self.lowerPointY) / 3
             self.x2 = self.lowerPointX + (self.highPointX - self.lowerPointX) * 2 / 3
@@ -38,6 +46,13 @@ class Snowflake:
             self.pointOfTriangleX = (self.x1 + self.x2 + math.sqrt(3) * (self.y1 - self.y2)) / 2
             self.pointOfTriangleY = (self.y1 + self.y2 - math.sqrt(3) * (self.x1 - self.x2)) / 2
 
+        elif self.isLeft:
+            self.x1 = self.lowerPointX + (self.highPointX - self.lowerPointX) / 3
+            self.y1 = self.lowerPointY + (self.highPointY - self.lowerPointY) * 2 / 3
+            self.x2 = self.lowerPointX + (self.highPointX - self.lowerPointX) * 2 / 3
+            self.y2 = self.lowerPointY + (self.highPointY - self.lowerPointY) / 3
+            self.pointOfTriangleX = (self.x1 + self.x2 + math.sqrt(3) * (self.y1 - self.y2)) / 2
+            self.pointOfTriangleY = (self.y1 + self.y2 - math.sqrt(3) * (self.x1 - self.x2)) / 2
         else:
             self.x1 = self.lowerPointX + (self.highPointX - self.lowerPointX) / 3
             self.y1 = self.lowerPointY + (self.highPointY - self.lowerPointY) * 2 / 3
@@ -68,16 +83,69 @@ class Snowflake:
         arrayOfSnowflakes.append(Snowflake(self.size, [self.x1, self.y1], self.endPoint, 1,0))
 
         #arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY],[self.x2, self.y2], 1,0))
-        '''
-        if self.x1 < self.pointOfTriangleX:
-            arrayOfSnowflakes.append(Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1,0))
+
+
+        if self.x1==self.x2:
+            if self.x1 < self.pointOfTriangleX:
+                arrayOfSnowflakes.append(Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1,0))
+            elif self.x1 == self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            else:
+                arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1,0))
+
+            if self.x2 < self.pointOfTriangleX:
+                arrayOfSnowflakes.append(Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1,0))
+            elif self.x2 == self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            else:
+                arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x2, self.y2], 1,0))
+
+        elif self.x1>self.x2:
+            if self.x1 < self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 1))
+            elif self.x1 == self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            else:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1, 0))
+
+            if self.x2 < self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            elif self.x2 == self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            else:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x2, self.y2], 1, 0))
         else:
-            arrayOfSnowflakes.append(Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1,0))
-        '''
+            if self.x1 < self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            elif self.x1 == self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x1, self.y1], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            else:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x1, self.y1], 1, 0))
+
+            if self.x2 < self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            elif self.x2 == self.pointOfTriangleX:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.x2, self.y2], [self.pointOfTriangleX, self.pointOfTriangleY], 1, 0))
+            else:
+                arrayOfSnowflakes.append(
+                    Snowflake(self.size, [self.pointOfTriangleX, self.pointOfTriangleY], [self.x2, self.y2], 1, 0))
 
 arrayOfSnowflakes = []
 
-arrayOfSnowflakes.append(Snowflake(3, [0, BASE_HEIGHT/2], [BASE_WIDTH, BASE_WIDTH/2], 1, 0))
+arrayOfSnowflakes.append(Snowflake(3, [0, BASE_HEIGHT/2], [BASE_WIDTH, BASE_HEIGHT/2+400], 1, 0))
 
 for k in range(RECURSION_DEPTH):
     for p in range(len(arrayOfSnowflakes)):

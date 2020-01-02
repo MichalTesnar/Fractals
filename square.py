@@ -42,5 +42,3 @@ for k in range(RECURSION_DEPTH):
 
     for p in range(len(arrayOfSquareFractals)):
         arrayOfSquareFractals[p].draw()
-
-        

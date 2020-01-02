@@ -15,9 +15,12 @@ def main():
           "3: Trojúhelník;" "\n"
           "4: Vločka;" "\n"
           "5: Kantorovo diskontiuum;")
+    import snowflake
+    '''
     choice = int(input())
     print(choice)
 
+    
     if choice == 1:
         import square
     if choice == 2:
@@ -28,6 +31,7 @@ def main():
         import snowflake
     if choice == 5:
         import CantorLine
+    '''
 
     # Životní cyklus knihovny Pygame s vytvořením screenshotu právě zobrazeného snímku
     while True:

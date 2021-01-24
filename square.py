@@ -1,7 +1,6 @@
 # Import nutných konstant
 from constants import *
 
-
 # Objekt části fraktálu
 class SquareFractal:
 

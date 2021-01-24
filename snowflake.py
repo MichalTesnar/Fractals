@@ -114,7 +114,7 @@ class Snowflake:
 
 arrayOfSnowflakes = []
 
-arrayOfSnowflakes.append(Snowflake(3, [0, BASE_HEIGHT/2], [BASE_WIDTH, BASE_HEIGHT/2+1], 5, 0))
+arrayOfSnowflakes.append(Snowflake(3, [0, BASE_HEIGHT/2], [BASE_WIDTH, BASE_HEIGHT/2+1], 10, 0))
 
 for k in range(RECURSION_DEPTH):
     for p in range(len(arrayOfSnowflakes)):

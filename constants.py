@@ -2,8 +2,8 @@
 import pygame, sys, math
 
 # Konstanty pro vznik zobrazovacího okna a konstanta samotné obrazovky
-BASE_WIDTH = 10000
-BASE_HEIGHT = 10000
+BASE_WIDTH = 2000
+BASE_HEIGHT = 2000
 DISPLAY = pygame.display.set_mode((BASE_WIDTH, BASE_HEIGHT), 0, 32)
 
 # Barvy
@@ -12,5 +12,5 @@ BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
 
 # Hloubka rekurze fraktálu
-RECURSION_DEPTH = 6
+RECURSION_DEPTH = 5
 

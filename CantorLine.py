@@ -10,7 +10,7 @@ class LinePeace:
 
     def draw(self):
         pygame.draw.line(DISPLAY, BLUE, (self.startPoint[0], self.startPoint[1]),
-                         (self.startPoint[0] + self.size, self.startPoint[1]), 1)
+                         (self.startPoint[0] + self.size, self.startPoint[1]), 3)
 
     def replicate(self):
         self.iterable = 0
